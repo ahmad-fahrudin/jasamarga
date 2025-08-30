@@ -31,6 +31,31 @@ Route::get('/kontak', function () {
     return Inertia::render('Kontak');
 })->name('kontak');
 
+// Visi & Misi page
+Route::get('/visi-misi', function () {
+    return Inertia::render('VisiMisi');
+})->name('visi-misi');
+
+// Tata Nilai page
+Route::get('/tata-nilai', function () {
+    return Inertia::render('TataNilai');
+})->name('tata-nilai');
+
+// Struktur Organisasi page
+Route::get('/struktur-organisasi', function () {
+    return Inertia::render('StrukturOrganisasi');
+})->name('struktur-organisasi');
+
+// Penghargaan page
+Route::get('/penghargaan', function () {
+    return Inertia::render('Penghargaan');
+})->name('penghargaan');
+
+// Kebijakan Mutu & K3 page
+Route::get('/kebijakan-mutuk3', function () {
+    return Inertia::render('KebijakanMutuK3');
+})->name('kebijakan-mutuk3');
+
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -1,171 +1,66 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
 import LandingLayout from '@/layouts/LandingLayout.vue';
 </script>
 
 <template>
-    <LandingLayout title="Tentang Kami - Jasamarga Jogja Bawen" :showBreadcrumb="true" breadcrumbTitle="Tentang Kami">
-        <!-- Main Content -->
-        <main>
-            <!-- Hero Section -->
-            <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-                <div class="max-w-6xl mx-auto px-4 text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Tentang Kami</h1>
-                    <p class="text-xl max-w-2xl mx-auto">
-                        Mengenal lebih dekat PT Jasamarga Jogja Bawen dan komitmen kami dalam membangun infrastruktur berkualitas
-                    </p>
-                </div>
-            </section>
+  <LandingLayout title="Tentang Kami - Jasamarga Jogja Bawen" :showBreadcrumb="true" breadcrumbTitle="Tentang Kami">
+    <main class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">TENTANG KAMI</h1>
+        <div class="h-0.5 w-24 bg-gray-300 mb-8"></div>
 
-            <!-- Profil Perusahaan -->
-            <section class="py-16">
-                <div class="max-w-6xl mx-auto px-4">
-                    <div class="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <h2 class="text-3xl font-bold text-blue-800 mb-6">Profil Perusahaan</h2>
-                            <p class="text-gray-600 mb-6 text-lg leading-relaxed">
-                                PT Jasamarga Jogja Bawen (JJB) merupakan Badan Usaha Jalan Tol (BUJT) yang dibentuk oleh konsorsium BUMN pemenang lelang pembangunan Jalan Tol Yogyakarta-Bawen. Sebagai anak perusahaan PT Jasa Marga (Persero) Tbk, kami berkomitmen untuk memberikan pelayanan infrastruktur jalan tol terbaik.
-                            </p>
-                            <p class="text-gray-600 mb-6 text-lg leading-relaxed">
-                                Proyek jalan tol Yogyakarta-Bawen memiliki panjang total 75,12 km yang akan menghubungkan Kota Yogyakarta dengan Kabupaten Bawen, Jawa Tengah. Proyek ini merupakan bagian penting dari pengembangan infrastruktur nasional untuk mendukung konektivitas antar wilayah.
-                            </p>
-                            <Link href="/kontak" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-                                Hubungi Kami
-                            </Link>
-                        </div>
-                        <div class="bg-gray-200 h-96 rounded-lg flex items-center justify-center">
-                            <span class="text-gray-500 text-lg">Gambar Profil Perusahaan</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <div class="prose max-w-none text-gray-700">
+          <p>
+            PT Jasamarga Semarang Batang adalah pemegang konsesi Jalan Tol Batang – Semarang yang merupakan bagian dari jaringan jalan Tol Transjawa menghubungkan Kabupaten Batang, Kendal dan Kota Semarang serta merupakan salah satu Proyek Strategis Nasional. Terbentang sepanjang 75 KM, jalan tol ini merupakan perusahaan patungan antara PT Jasa Marga (Persero) Tbk., dengan kepemilikan saham sebesar 44,18%, Kings Bless Limited 39,77% dan PT Lintas Marga Jawa 16,05%.
+          </p>
 
-            <!-- Visi & Misi -->
-            <section class="py-16 bg-gray-50">
-                <div class="max-w-6xl mx-auto px-4">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-bold text-blue-800 mb-4">Visi & Misi</h2>
-                        <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
-                    </div>
+          <p>
+            Jalan tol ini memiliki 6 simpang susun, antara lain :
+          </p>
 
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <!-- Visi -->
-                        <div class="bg-white p-8 rounded-lg shadow-md">
-                            <h3 class="text-2xl font-bold text-blue-800 mb-6">Visi</h3>
-                            <div class="w-12 h-1 bg-yellow-500 mb-6"></div>
-                            <p class="text-gray-600 text-lg leading-relaxed">
-                                Menjadi perusahaan penyedia infrastruktur jalan tol terpercaya dan terdepan dalam mendukung konektivitas regional dengan standar pelayanan berkualitas tinggi dan berkelanjutan.
-                            </p>
-                        </div>
+          <ul>
+            <li>Simpang susun Krapyak</li>
+            <li>Simpang susun Kaliwungu</li>
+            <li>Simpang susun Kendal</li>
+            <li>Simpang susun Weleri</li>
+            <li>Simpang susun Kawasan Industri Batang</li>
+            <li>Simpang Susun Kandeman</li>
+          </ul>
 
-                        <!-- Misi -->
-                        <div class="bg-white p-8 rounded-lg shadow-md">
-                            <h3 class="text-2xl font-bold text-blue-800 mb-6">Misi</h3>
-                            <div class="w-12 h-1 bg-yellow-500 mb-6"></div>
-                            <ul class="text-gray-600 text-lg leading-relaxed space-y-3">
-                                <li class="flex items-start">
-                                    <span class="text-blue-600 mr-3 mt-1">•</span>
-                                    Membangun dan mengoperasikan jalan tol dengan standar keselamatan dan kualitas tertinggi
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-blue-600 mr-3 mt-1">•</span>
-                                    Memberikan pelayanan prima kepada pengguna jalan tol
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-blue-600 mr-3 mt-1">•</span>
-                                    Mendukung pertumbuhan ekonomi regional melalui infrastruktur berkualitas
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-blue-600 mr-3 mt-1">•</span>
-                                    Menerapkan praktik bisnis yang berkelanjutan dan ramah lingkungan
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
+          <p>
+            Jalan tol Batang – Semarang sepenuhnya sudah beroperasi mulai dari Gerbang Tol Kandeman sampai dengan Gerbang Tol Kalikangkung sejak 21 Desember 2018 namun mulai ber-tarif pada tanggal 21 Januari 2019.
+          </p>
 
-            <!-- Tata Nilai Perusahaan -->
-            <section class="py-16">
-                <div class="max-w-6xl mx-auto px-4">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-bold text-blue-800 mb-4">Tata Nilai Perusahaan</h2>
-                        <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
-                    </div>
+          <p>
+            Jalan tol Batang – Semarang dibangun dengan struktur perkerasan beton atau rigid pavement dengan dua lajur untuk masing-masing arah.
+          </p>
 
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <!-- AKHLAK Values -->
-                        <div class="text-center bg-white p-6 rounded-lg shadow-md">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span class="text-blue-600 font-bold text-xl">A</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-blue-800 mb-3">Amanah</h3>
-                            <p class="text-gray-600">Memegang teguh kepercayaan yang diberikan dengan penuh tanggung jawab</p>
-                        </div>
+          <p>
+            Jalan tol ini memiliki 4 rest area, terdiri dari 3 rest area tipe A dan 1 rest area tipe B. Rest area tipe A dilengkapi fasilitas masjid, toilet, rumah makan, SPBU dan area parkir yang dapat menampung minimal 100 kendaraan. Rest area tipe B merupakan rest area yang lebih kecil dilengkapi musholla, toilet, pujasera dan area parkir minimal untuk 25 kendaraan. Rest Area tersebut terdapat pada KM 379A (tipe A), KM 391A (tipe B), KM 389B (tipe A). Pengoperasian rest area ini dilaksanakan oleh PT Jasamarga Related Business dan Rest Area RM 360 B (tipe A) dioperasikan oleh PT Jasamarga Restarea Batang.
+          </p>
 
-                        <div class="text-center bg-white p-6 rounded-lg shadow-md">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span class="text-blue-600 font-bold text-xl">K</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-blue-800 mb-3">Kompeten</h3>
-                            <p class="text-gray-600">Terus belajar dan mengembangkan kemampuan untuk memberikan hasil terbaik</p>
-                        </div>
+          <figure>
+            <img src="/images/jasamarga-jumbotron.jpg" alt="Jasamarga" />
+            <figcaption>Ilustrasi Jalan Tol Batang - Semarang</figcaption>
+          </figure>
 
-                        <div class="text-center bg-white p-6 rounded-lg shadow-md">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span class="text-blue-600 font-bold text-xl">H</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-blue-800 mb-3">Harmonis</h3>
-                            <p class="text-gray-600">Saling menghargai dan bekerja sama dengan baik dalam tim</p>
-                        </div>
+          <p>
+            Jalan Tol Batang – Semarang dioperasikan oleh PT Jasamarga Tollroad Operator sejak awal pengoperasian. Jalan tol ini menerapkan transaksi pembayaran tol non tunai menggunakan uang elektronik. Bekerjasama dengan Bank Indonesia dan bank-bank penerbit uang elektronik telah dilakukan sosialisasi dan edukasi kepada masyarakat tentang tata cara bertransaksi di jalan tol.
+          </p>
 
-                        <div class="text-center bg-white p-6 rounded-lg shadow-md">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span class="text-blue-600 font-bold text-xl">L</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-blue-800 mb-3">Loyal</h3>
-                            <p class="text-gray-600">Berdedikasi penuh untuk kemajuan perusahaan dan bangsa</p>
-                        </div>
-
-                        <div class="text-center bg-white p-6 rounded-lg shadow-md">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span class="text-blue-600 font-bold text-xl">A</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-blue-800 mb-3">Adaptif</h3>
-                            <p class="text-gray-600">Mampu beradaptasi dengan perubahan dan tantangan zaman</p>
-                        </div>
-
-                        <div class="text-center bg-white p-6 rounded-lg shadow-md">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span class="text-blue-600 font-bold text-xl">K</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-blue-800 mb-3">Kolaboratif</h3>
-                            <p class="text-gray-600">Bekerja sama secara sinergis untuk mencapai tujuan bersama</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Struktur Organisasi -->
-            <section class="py-16 bg-gray-50">
-                <div class="max-w-6xl mx-auto px-4">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-bold text-blue-800 mb-4">Struktur Organisasi</h2>
-                        <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-lg shadow-md">
-                        <div class="text-center mb-8">
-                            <div class="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
-                                <span class="text-gray-500 text-lg">Bagan Struktur Organisasi</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-center">
-                            Struktur organisasi PT Jasamarga Jogja Bawen dirancang untuk mendukung efektivitas operasional dan pencapaian visi misi perusahaan.
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </LandingLayout>
+          <p>
+            Saat ini dalam meningkatkan pelayanan di bidang pemeliharaan jalan tol, PT Jasamarga Semarang Batang bekerja sama dengan PT Jasamarga Tollroad Maintenance yang bertujuan melakukan perbaikan pada ruas Batang – Semarang sehingga pemenuhan terhadap Standar Pelayanan Minimal (SPM) Jalan Tol sesuai dengan Peraturan Menteri PUPR No. 16 Tahun 2014.
+          </p>
+        </div>
+      </div>
+    </main>
+  </LandingLayout>
 </template>
+
+<style scoped>
+.prose img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+</style>

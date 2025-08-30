@@ -42,7 +42,17 @@ const navigationItems: NavItem[] = [
             }
         ]
     },
-    { href: '/tentang-kami', label: 'Tentang Kami' },
+    {
+        label: 'Tentang Kami',
+        children: [
+            { href: '/tentang-kami', label: 'Profil Perusahaan' },
+            { href: '/visi-misi', label: 'Visi & Misi' },
+            { href: '/tata-nilai', label: 'Tata Nilai' },
+            { href: '/struktur-organisasi', label: 'Struktur Organisasi' },
+            { href: '/penghargaan', label: 'Penghargaan' },
+            { href: '/kebijakan-mutuk3', label: 'Kebijakan Mutu & K3' }
+        ]
+    },
     { href: '/berita-informasi', label: 'Berita & Informasi' },
     { href: '/kontak', label: 'Kontak' }
 ];
