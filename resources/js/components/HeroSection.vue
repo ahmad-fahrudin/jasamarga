@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
 
 interface Props {
     images?: string[];
@@ -71,14 +72,10 @@ const next = () => {
         <!-- controls -->
         <div v-if="(props.images || []).length > 1" class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 z-30 pointer-events-none">
             <button @click="prev" class="pointer-events-auto bg-black/75 hover:bg-black/85 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-lg sm:text-2xl shadow-lg ring-1 ring-white/25 transition-colors focus:outline-none focus:ring-2 focus:ring-white/40 backdrop-blur-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
+            <ChevronLeft class="w-6 h-6" />
             </button>
             <button @click="next" class="pointer-events-auto bg-black/75 hover:bg-black/85 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center text-lg sm:text-2xl shadow-lg ring-1 ring-white/25 transition-colors focus:outline-none focus:ring-2 focus:ring-white/40 backdrop-blur-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
+            <ChevronRight class="w-6 h-6" />
             </button>
         </div>
 
