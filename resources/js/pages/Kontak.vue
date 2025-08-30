@@ -30,7 +30,7 @@ const submitForm = () => {
     <div class="min-h-screen bg-white">
         <!-- Header -->
         <header class="bg-white shadow-sm border-b">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="flex items-center justify-between h-16">
                     <!-- Logo -->
                     <div class="flex items-center">
@@ -82,7 +82,7 @@ const submitForm = () => {
 
         <!-- Breadcrumb -->
         <div class="bg-gray-100 py-4">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <nav class="text-sm">
                     <Link href="/" class="text-blue-600 hover:text-blue-800">Beranda</Link>
                     <span class="mx-2 text-gray-500">></span>
@@ -95,7 +95,7 @@ const submitForm = () => {
         <main>
             <!-- Hero Section -->
             <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-                <div class="container mx-auto px-4 text-center">
+                <div class="max-w-6xl mx-auto px-4 text-center">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">Hubungi Kami</h1>
                     <p class="text-xl max-w-2xl mx-auto">
                         Kami siap membantu dan menjawab pertanyaan Anda tentang PT Jasamarga Jogja Bawen
@@ -105,7 +105,7 @@ const submitForm = () => {
 
             <!-- Contact Information -->
             <section class="py-16">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="grid md:grid-cols-3 gap-8 mb-16">
                         <!-- Alamat -->
                         <div class="text-center bg-white p-8 rounded-lg shadow-md">
@@ -163,7 +163,7 @@ const submitForm = () => {
 
             <!-- Contact Form & Map -->
             <section class="py-16 bg-gray-50">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="grid lg:grid-cols-2 gap-12">
                         <!-- Contact Form -->
                         <div class="bg-white p-8 rounded-lg shadow-md">
@@ -268,7 +268,7 @@ const submitForm = () => {
 
             <!-- FAQ Section -->
             <section class="py-16">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="text-center mb-12">
                         <h2 class="text-3xl font-bold text-blue-800 mb-4">Pertanyaan yang Sering Diajukan</h2>
                         <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
@@ -316,7 +316,7 @@ const submitForm = () => {
 
             <!-- Social Media -->
             <section class="py-16 bg-blue-800 text-white">
-                <div class="container mx-auto px-4 text-center">
+                <div class="max-w-6xl mx-auto px-4 text-center">
                     <h2 class="text-3xl font-bold mb-4">Ikuti Media Sosial Kami</h2>
                     <p class="text-xl mb-8 max-w-2xl mx-auto">
                         Dapatkan update terbaru tentang progress proyek dan kegiatan perusahaan
@@ -350,7 +350,7 @@ const submitForm = () => {
 
         <!-- Footer -->
         <footer class="bg-gray-900 text-white py-12">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="grid md:grid-cols-4 gap-8">
                     <!-- Company Info -->
                     <div>

@@ -11,7 +11,7 @@ const mobileMenuOpen = ref(false);
     <div class="min-h-screen bg-white">
         <!-- Header -->
         <header class="bg-white shadow-sm border-b">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="flex items-center justify-between h-16">
                     <!-- Logo -->
                     <div class="flex items-center">
@@ -63,7 +63,7 @@ const mobileMenuOpen = ref(false);
 
         <!-- Breadcrumb -->
         <div class="bg-gray-100 py-4">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <nav class="text-sm">
                     <Link href="/" class="text-blue-600 hover:text-blue-800">Beranda</Link>
                     <span class="mx-2 text-gray-500">></span>
@@ -76,7 +76,7 @@ const mobileMenuOpen = ref(false);
         <main>
             <!-- Hero Section -->
             <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-                <div class="container mx-auto px-4 text-center">
+                <div class="max-w-6xl mx-auto px-4 text-center">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">Tentang Kami</h1>
                     <p class="text-xl max-w-2xl mx-auto">
                         Mengenal lebih dekat PT Jasamarga Jogja Bawen dan komitmen kami dalam membangun infrastruktur berkualitas
@@ -86,7 +86,7 @@ const mobileMenuOpen = ref(false);
 
             <!-- Profil Perusahaan -->
             <section class="py-16">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="grid md:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 class="text-3xl font-bold text-blue-800 mb-6">Profil Perusahaan</h2>
@@ -109,7 +109,7 @@ const mobileMenuOpen = ref(false);
 
             <!-- Visi & Misi -->
             <section class="py-16 bg-gray-50">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="text-center mb-12">
                         <h2 class="text-3xl font-bold text-blue-800 mb-4">Visi & Misi</h2>
                         <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
@@ -154,7 +154,7 @@ const mobileMenuOpen = ref(false);
 
             <!-- Tata Nilai Perusahaan -->
             <section class="py-16">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="text-center mb-12">
                         <h2 class="text-3xl font-bold text-blue-800 mb-4">Tata Nilai Perusahaan</h2>
                         <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
@@ -215,7 +215,7 @@ const mobileMenuOpen = ref(false);
 
             <!-- Struktur Organisasi -->
             <section class="py-16 bg-gray-50">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="text-center mb-12">
                         <h2 class="text-3xl font-bold text-blue-800 mb-4">Struktur Organisasi</h2>
                         <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
@@ -237,7 +237,7 @@ const mobileMenuOpen = ref(false);
 
         <!-- Footer -->
         <footer class="bg-gray-900 text-white py-12">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="grid md:grid-cols-4 gap-8">
                     <!-- Company Info -->
                     <div>

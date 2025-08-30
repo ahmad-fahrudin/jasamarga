@@ -56,7 +56,7 @@ const beritaList = [
     <div class="min-h-screen bg-white">
         <!-- Header -->
         <header class="bg-white shadow-sm border-b">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="flex items-center justify-between h-16">
                     <!-- Logo -->
                     <div class="flex items-center">
@@ -108,7 +108,7 @@ const beritaList = [
 
         <!-- Breadcrumb -->
         <div class="bg-gray-100 py-4">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <nav class="text-sm">
                     <Link href="/" class="text-blue-600 hover:text-blue-800">Beranda</Link>
                     <span class="mx-2 text-gray-500">></span>
@@ -121,7 +121,7 @@ const beritaList = [
         <main>
             <!-- Hero Section -->
             <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-                <div class="container mx-auto px-4 text-center">
+                <div class="max-w-6xl mx-auto px-4 text-center">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">Berita & Informasi</h1>
                     <p class="text-xl max-w-2xl mx-auto">
                         Ikuti perkembangan terkini seputar proyek dan kegiatan PT Jasamarga Jogja Bawen
@@ -131,7 +131,7 @@ const beritaList = [
 
             <!-- Filter Section -->
             <section class="py-8 bg-gray-50">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="flex flex-wrap gap-4 justify-center">
                         <button class="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors">
                             Semua
@@ -154,7 +154,7 @@ const beritaList = [
 
             <!-- Berita Utama -->
             <section class="py-12">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="mb-8">
                         <h2 class="text-2xl font-bold text-blue-800 mb-4">Berita Utama</h2>
                         <div class="w-16 h-1 bg-yellow-500"></div>
@@ -215,7 +215,7 @@ const beritaList = [
 
             <!-- Berita Terbaru -->
             <section class="py-12 bg-gray-50">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="mb-8">
                         <h2 class="text-2xl font-bold text-blue-800 mb-4">Berita Terbaru</h2>
                         <div class="w-16 h-1 bg-yellow-500"></div>
@@ -274,7 +274,7 @@ const beritaList = [
 
             <!-- Newsletter Subscription -->
             <section class="py-16 bg-blue-800 text-white">
-                <div class="container mx-auto px-4 text-center">
+                <div class="max-w-6xl mx-auto px-4 text-center">
                     <h2 class="text-3xl font-bold mb-4">Berlangganan Newsletter</h2>
                     <p class="text-xl mb-8 max-w-2xl mx-auto">
                         Dapatkan berita dan informasi terbaru langsung di email Anda
@@ -295,7 +295,7 @@ const beritaList = [
 
         <!-- Footer -->
         <footer class="bg-gray-900 text-white py-12">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="grid md:grid-cols-4 gap-8">
                     <!-- Company Info -->
                     <div>

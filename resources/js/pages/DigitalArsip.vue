@@ -85,7 +85,7 @@ const getFileIcon = (tipe: string) => {
     <div class="min-h-screen bg-white">
         <!-- Header -->
         <header class="bg-white shadow-sm border-b">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="flex items-center justify-between h-16">
                     <!-- Logo -->
                     <div class="flex items-center">
@@ -137,7 +137,7 @@ const getFileIcon = (tipe: string) => {
 
         <!-- Breadcrumb -->
         <div class="bg-gray-100 py-4">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <nav class="text-sm">
                     <Link href="/" class="text-blue-600 hover:text-blue-800">Beranda</Link>
                     <span class="mx-2 text-gray-500">></span>
@@ -150,7 +150,7 @@ const getFileIcon = (tipe: string) => {
         <main>
             <!-- Hero Section -->
             <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-                <div class="container mx-auto px-4 text-center">
+                <div class="max-w-6xl mx-auto px-4 text-center">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">Digital Arsip</h1>
                     <p class="text-xl max-w-2xl mx-auto">
                         Akses koleksi dokumen, laporan, dan media digital PT Jasamarga Jogja Bawen
@@ -160,7 +160,7 @@ const getFileIcon = (tipe: string) => {
 
             <!-- Search & Filter Section -->
             <section class="py-8 bg-gray-50">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <!-- Search Bar -->
                     <div class="max-w-2xl mx-auto mb-8">
                         <div class="relative">
@@ -198,7 +198,7 @@ const getFileIcon = (tipe: string) => {
 
             <!-- Documents Grid -->
             <section class="py-12">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="mb-8 flex justify-between items-center">
                         <div>
                             <h2 class="text-2xl font-bold text-blue-800 mb-2">Dokumen Tersedia</h2>
@@ -311,7 +311,7 @@ const getFileIcon = (tipe: string) => {
 
             <!-- Upload Section (Admin Only) -->
             <section class="py-16 bg-gray-50">
-                <div class="container mx-auto px-4 text-center">
+                <div class="max-w-6xl mx-auto px-4 text-center">
                     <h2 class="text-3xl font-bold text-blue-800 mb-4">Akses Terbatas</h2>
                     <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                         Beberapa dokumen memerlukan akses khusus. Silakan hubungi administrator untuk informasi lebih lanjut.
@@ -325,7 +325,7 @@ const getFileIcon = (tipe: string) => {
 
         <!-- Footer -->
         <footer class="bg-gray-900 text-white py-12">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="grid md:grid-cols-4 gap-8">
                     <!-- Company Info -->
                     <div>

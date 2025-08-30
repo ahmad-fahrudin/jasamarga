@@ -11,7 +11,7 @@ const mobileMenuOpen = ref(false);
     <div class="min-h-screen bg-white">
         <!-- Header -->
         <header class="bg-white shadow-sm border-b">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="flex items-center justify-between h-16">
                     <!-- Logo -->
                     <div class="flex items-center">
@@ -65,7 +65,7 @@ const mobileMenuOpen = ref(false);
         <main>
             <!-- Hero Section -->
             <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-                <div class="container mx-auto px-4 text-center">
+                <div class="max-w-6xl mx-auto px-4 text-center">
                     <h1 class="text-4xl md:text-6xl font-bold mb-6">PT Jasamarga Jogja Bawen</h1>
                     <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
                         Menghubungkan Yogyakarta dan Bawen melalui infrastruktur jalan tol yang berkualitas tinggi
@@ -78,7 +78,7 @@ const mobileMenuOpen = ref(false);
 
             <!-- Tata Budaya Section -->
             <section class="py-16 bg-gray-50">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="text-center mb-16">
                         <h2 class="text-4xl font-bold text-blue-800 mb-4">Tata Budaya</h2>
                         <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
@@ -167,7 +167,7 @@ const mobileMenuOpen = ref(false);
 
             <!-- Informasi Proyek Section -->
             <section class="py-16 bg-white">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="text-center mb-16">
                         <h2 class="text-4xl font-bold text-blue-800 mb-4">Informasi Ruas Tol Jogja - Bawen</h2>
                         <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
@@ -200,7 +200,7 @@ const mobileMenuOpen = ref(false);
 
             <!-- Berita & Informasi -->
             <section class="py-16 bg-gray-50">
-                <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-4">
                     <div class="text-center mb-16">
                         <h2 class="text-4xl font-bold text-blue-800 mb-4">Berita & Informasi Terkini</h2>
                         <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
@@ -245,7 +245,7 @@ const mobileMenuOpen = ref(false);
 
             <!-- Call to Action -->
             <section class="py-16 bg-blue-800 text-white">
-                <div class="container mx-auto px-4 text-center">
+                <div class="max-w-6xl mx-auto px-4 text-center">
                     <h2 class="text-3xl font-bold mb-4">Bergabunglah Dengan Kami</h2>
                     <p class="text-xl mb-8 max-w-2xl mx-auto">
                         Mari bersama-sama membangun infrastruktur yang berkualitas untuk kemajuan Indonesia
@@ -264,7 +264,7 @@ const mobileMenuOpen = ref(false);
 
         <!-- Footer -->
         <footer class="bg-gray-900 text-white py-12">
-            <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto px-4">
                 <div class="grid md:grid-cols-4 gap-8">
                     <!-- Company Info -->
                     <div>
