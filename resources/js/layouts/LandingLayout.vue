@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link, usePage } from '@inertiajs/vue3';
-import { ref, computed, reactive } from 'vue';
+import { ref, computed, reactive, onMounted, onBeforeUnmount } from 'vue';
 
 interface Props {
     title?: string;
@@ -9,12 +9,43 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    title: 'Jasamarga Jogja Bawen',
+    title: 'Jasamarga Semarang-Batang',
     showBreadcrumb: false,
     breadcrumbTitle: ''
 });
 
 const mobileMenuOpen = ref(false);
+
+// Header visibility on scroll (fade in/out)
+const isHeaderVisible = ref(true);
+let lastScrollY = 0;
+const SCROLL_DELTA = 10; // minimum delta to trigger hide/show
+
+const handleScroll = () => {
+    const y = window.scrollY || window.pageYOffset || 0;
+    // if small movement, ignore
+    if (Math.abs(y - lastScrollY) < SCROLL_DELTA) return;
+
+    // if scrolling down and past a small offset, hide header
+    if (y > lastScrollY && y > 50) {
+        isHeaderVisible.value = false;
+    } else {
+        // scrolling up -> show header
+        isHeaderVisible.value = true;
+    }
+
+    lastScrollY = y;
+};
+
+onMounted(() => {
+    // protect SSR: only run in browser
+    lastScrollY = typeof window !== 'undefined' ? (window.scrollY || 0) : 0;
+    window.addEventListener('scroll', handleScroll, { passive: true });
+});
+
+onBeforeUnmount(() => {
+    if (typeof window !== 'undefined') window.removeEventListener('scroll', handleScroll);
+});
 
 // Get current route to highlight active menu
 const page = usePage();
@@ -141,13 +172,18 @@ const toggleMobileSub = (label: string) => {
 
     <div class="min-h-screen bg-white">
     <!-- Header (fixed on scroll) -->
-    <header class="bg-white shadow-sm border-b fixed top-0 left-0 right-0 z-50">
+    <header
+        :class="[
+            'bg-white shadow-sm border-b border-gray-300 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
+            isHeaderVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+        ]"
+    >
             <div class="max-w-6xl mx-auto px-4">
                 <div class="flex items-center h-16">
                     <!-- Logo (left) -->
                     <div class="flex-shrink-0">
                         <Link href="/" class="flex items-center">
-                            <img src="/images/jasamarga-logo.png" alt="Jasamarga Logo" class="h-10 w-auto mr-3" />
+                            <img src="/images/jasamarga-logo.png" alt="Jasamarga Logo" class="h-14 w-auto mr-3 relative -top-1" />
                         </Link>
                     </div>
 
@@ -183,7 +219,7 @@ const toggleMobileSub = (label: string) => {
                                             <li
                                                 v-for="child in item.children"
                                                 :key="child.label"
-                                                class="px-4 py-2 hover:bg-gray-50 flex justify-between items-center"
+                                                class="relative px-4 py-2 hover:bg-gray-50 flex justify-between items-center"
                                                 @mouseenter="() => handleSubEnter(child)"
                                                 @mouseleave="() => handleSubLeave()"
                                             >
@@ -198,7 +234,7 @@ const toggleMobileSub = (label: string) => {
                                                     <!-- Second-level dropdown -->
                                                     <div
                                                         v-show="openSubDropdown === child.label"
-                                                        class="absolute left-full top-0 ml-1 w-56 bg-white border shadow-lg z-50"
+                                                        class="absolute left-full top-2 ml-1 w-56 bg-white border shadow-lg z-50"
                                                         @mouseenter="handleDropdownEnter"
                                                         @mouseleave="handleDropdownLeave"
                                                     >
@@ -309,25 +345,24 @@ const toggleMobileSub = (label: string) => {
         </header>
 
     <!-- Main Content Slot -->
-    <!-- add top padding equal to header height (h-16) so content isn't hidden behind fixed header -->
     <main class="pt-16">
             <slot />
         </main>
 
-        <!-- Footer -->
-        <footer class="bg-gray-900 text-white py-12">
+    <!-- Footer -->
+    <footer class="bg-blue-950 text-white py-12">
             <div class="max-w-6xl mx-auto px-4">
                 <div class="grid md:grid-cols-4 gap-8">
                     <!-- Company Info -->
                     <div>
                         <div class="flex items-center mb-4">
-                            <img src="/images/jasamarga-logo.png" alt="Jasamarga Logo" class="h-8 w-auto mr-2" />
+                            <img src="/images/jasamarga-footer.png" alt="Jasamarga Logo" class="h-14 w-auto mr-2 relative -top-2" />
                         </div>
                         <p class="text-gray-400 mb-4">
-                            PT Jasamarga Jogja Bawen (JJB) merupakan Badan Usaha Jalan Tol (BUJT) yang dibentuk oleh konsorsium BUMN pemenang lelang pembangunan Jalan Tol Yogyakarta-Bawen.
+                            PT Jasamarga Semarang-Batang (JSB) merupakan Badan Usaha Jalan Tol (BUJT) yang mengelola dan mendukung pengoperasian Jalan Tol Semarang-Batang.
                         </p>
                         <div class="flex items-center space-x-4 mt-4">
-                            <a href="https://www.instagram.com/jasamargajogjabawen.official/" target="_blank" class="text-gray-400 hover:text-yellow-500 transition-colors">
+                            <a href="https://www.instagram.com/jasamarga/" target="_blank" class="text-gray-400 hover:text-yellow-500 transition-colors">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.624 5.367 11.99 11.988 11.99s11.99-5.366 11.99-11.99C24.007 5.367 18.641.001 12.017.001zM8.449 16.988c-1.297 0-2.348-1.051-2.348-2.348 0-1.297 1.051-2.348 2.348-2.348 1.297 0 2.348 1.051 2.348 2.348 0 1.297-1.051 2.348-2.348 2.348zm7.718 0c-1.297 0-2.348-1.051-2.348-2.348 0-1.297 1.051-2.348 2.348-2.348 1.297 0 2.348 1.051 2.348 2.348 0 1.297-1.051 2.348-2.348 2.348z"/>
                                 </svg>
@@ -352,7 +387,6 @@ const toggleMobileSub = (label: string) => {
                             <li><Link href="/tentang-kami" class="text-gray-400 hover:text-white transition-colors">Profil Perusahaan</Link></li>
                             <li><Link href="/tentang-kami#visi-misi" class="text-gray-400 hover:text-white transition-colors">Visi & Misi</Link></li>
                             <li><Link href="/tentang-kami#tata-nilai" class="text-gray-400 hover:text-white transition-colors">Tata Nilai</Link></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Disclaimer</a></li>
                         </ul>
                     </div>
 
@@ -361,8 +395,6 @@ const toggleMobileSub = (label: string) => {
                         <h4 class="text-lg font-bold mb-4">Bantuan</h4>
                         <ul class="space-y-2">
                             <li><a href="https://www.jasamarga.com/kalkulator-tarif-tol" target="_blank" class="text-gray-400 hover:text-white transition-colors">Kalkulator Tarif Tol</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Panduan Pengguna</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
                         </ul>
                     </div>
 
@@ -374,13 +406,13 @@ const toggleMobileSub = (label: string) => {
                                 <svg class="w-5 h-5 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                 </svg>
-                                <span class="text-sm">Jl. Sareh No.3, Kotabaru, Kec. Gondokusuman, Kota Yogyakarta, DIY 55224</span>
+                                <span class="text-sm">Kawasan Jalan Tol Semarang-Batang, Semarang, Jawa Tengah</span>
                             </div>
                             <div class="flex items-center">
                                 <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                                 </svg>
-                                <a href="mailto:jasamargajogjabawen@gmail.com" class="text-sm hover:text-white transition-colors">jasamargajogjabawen@gmail.com</a>
+                                <a href="mailto:jasamargasemarangbatang@gmail.com" class="text-sm hover:text-white transition-colors">jasamargasemarangbatang@gmail.com</a>
                             </div>
                             <div class="flex items-center">
                                 <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -392,8 +424,8 @@ const toggleMobileSub = (label: string) => {
                     </div>
                 </div>
 
-                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                    <p>&copy; 2025 PT Jasamarga Jogja Bawen. All rights reserved.</p>
+                <div class="border-t border-blue-800 mt-8 pt-8 text-center text-gray-400">
+                    <p>&copy; 2025 PT Jasamarga Semarang-Batang. All rights reserved.</p>
                 </div>
             </div>
         </footer>
