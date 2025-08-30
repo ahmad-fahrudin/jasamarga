@@ -195,7 +195,7 @@ const toggleMobileSub = (label: string) => {
         ]"
     >
             <div class="max-w-6xl mx-auto px-4">
-                <div class="flex items-center h-16">
+                <div class="flex items-center h-16 justify-between">
                     <!-- Logo (left) -->
                     <div class="flex-shrink-0">
                         <Link href="/" class="flex items-center">
@@ -295,7 +295,6 @@ const toggleMobileSub = (label: string) => {
 
                         <!-- Mobile menu button -->
                         <div class="md:hidden">
-                            <!-- replaced SVG with lucide Menu -->
                             <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-600 hover:text-blue-700">
                                 <Menu class="w-6 h-6" />
                             </button>

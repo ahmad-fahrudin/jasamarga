@@ -1,182 +1,104 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import LandingLayout from '@/layouts/LandingLayout.vue';
 import HeroSection from '@/components/HeroSection.vue';
+
+// Remote images from the official site so the local welcome matches jjb.co.id
+const heroImages = ref<string[]>(['/images/jasamarga-jumbotron.jpg', '/images/jasamarga-jumbotron2.jpg', '/images/jasamarga-jumbotron3.jpg', '/images/jasamarga-jumbotron4.jpg']);
+
+const aboutCards = ref([
+    {
+        title: 'Tentang Kami',
+        image: 'https://jjb.co.id/wp-content/uploads/2024/12/1-3-350x250.jpg',
+        href: 'https://jjb.co.id/profil-perusahaan/'
+    },
+    {
+        title: 'Visi & Misi',
+        image: 'https://jjb.co.id/wp-content/uploads/2024/12/2-3-350x250.jpg',
+        href: 'https://jjb.co.id/visi-dan-misi/'
+    },
+    {
+        title: 'Tata Nilai',
+        image: 'https://jjb.co.id/wp-content/uploads/2024/12/3-2-350x250.jpg',
+        href: 'https://jjb.co.id/tata-nilai/'
+    }
+]);
+
+const galleryImages = ref<string[]>([
+    'https://jjb.co.id/wp-content/uploads/2025/08/JJB_Gallery_1-900x640.jpg',
+    'https://jjb.co.id/wp-content/uploads/2025/08/JJB_Gallery_7-900x640.png',
+    'https://jjb.co.id/wp-content/uploads/2025/08/JJB_Gallery_2-900x640.jpg',
+    'https://jjb.co.id/wp-content/uploads/2025/08/JJB_Gallery_3-900x640.jpg'
+]);
 </script>
 
 <template>
     <LandingLayout title="Jasamarga Jogja Bawen - Beranda">
-    <!-- Hero Section: image-only slideshow -->
-    <HeroSection :images="['/images/jasamarga-jumbotron.jpg', '/images/jasamarga-jumbotron2.jpg', '/images/jasamarga-jumbotron3.jpg', '/images/jasamarga-jumbotron4.jpg']" :interval="6000" />
+        <!-- Hero Section: image-only slideshow -->
+        <HeroSection :images="heroImages" :interval="6000" />
 
-        <!-- Tata Budaya Section -->
-        <section class="py-16 bg-gray-50">
-            <div class="max-w-6xl mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-blue-800 mb-4">Tata Budaya</h2>
-                    <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
+        <main class="container mx-auto px-4 py-12">
+            <!-- Profil Perusahaan cards -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-6">Profil Perusahaan</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <a v-for="card in aboutCards" :key="card.title" :href="card.href" class="block border rounded overflow-hidden hover:shadow-lg transition">
+                        <img :src="card.image" :alt="card.title" class="w-full h-40 object-cover" />
+                        <div class="p-4">
+                            <h3 class="font-medium">{{ card.title }}</h3>
+                            <p class="text-sm text-gray-600">Selengkapnya &rarr;</p>
+                        </div>
+                    </a>
                 </div>
+            </section>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- BATIK -->
-                    <div class="text-center bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                        <div class="w-20 h-20 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
-                            <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2L3 7l9 5 9-5-9-5zM3 17l9 5 9-5M3 12l9 5 9-5"/>
-                            </svg>
+            <!-- Informasi Ruas Tol -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Informasi Ruas Tol Jogja - Bawen</h2>
+                <div class="bg-white border rounded p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-4xl font-bold">75,12 Km</p>
+                            <p class="text-sm text-gray-600">Panjang Ruas</p>
                         </div>
-                        <h3 class="text-xl font-bold text-blue-800 mb-4">BATIK (Bekerja dengan Baik, Teliti, dan Beretika)</h3>
-                        <div class="w-12 h-1 bg-yellow-500 mx-auto mb-4"></div>
-                        <p class="text-gray-600">
-                            Briefing dan doa bersama yang dilakukan di kantor Sareh maupun kantor proyek setiap Senin pagi.
-                        </p>
-                    </div>
-
-                    <!-- MONJALI -->
-                    <div class="text-center bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                        <div class="w-20 h-20 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
-                            <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-                                <path d="m9 14 2 2 4-4"/>
-                            </svg>
+                        <div class="w-1/2">
+                            <label class="text-sm text-gray-600">Progress Konstruksi Seksi 1</label>
+                            <div class="w-full bg-gray-200 rounded-full h-3 mt-2 overflow-hidden">
+                                <div class="bg-green-600 h-3" style="width:80.76%"></div>
+                            </div>
+                            <label class="text-sm text-gray-600 mt-3 block">Progress Pembebasan Lahan Seksi 1</label>
+                            <div class="w-full bg-gray-200 rounded-full h-3 mt-2 overflow-hidden">
+                                <div class="bg-blue-600 h-3" style="width:96.65%"></div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-blue-800 mb-4">MONJALI (Monitoring Kerja dan Evaluasi)</h3>
-                        <div class="w-12 h-1 bg-yellow-500 mx-auto mb-4"></div>
-                        <p class="text-gray-600">
-                            Rapat yang akan dilakukan oleh setiap divisi untuk memonitor dan mengevaluasi kemajuan pekerjaan pada setiap minggunya, dilaksanakan rutin pada hari Selasa.
-                        </p>
-                    </div>
-
-                    <!-- SEMAR -->
-                    <div class="text-center bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                        <div class="w-20 h-20 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
-                            <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="m22 11-3-3m0 0-3 3m3-3v8"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-blue-800 mb-4">SEMAR (Semangat Memahami Aturan)</h3>
-                        <div class="w-12 h-1 bg-yellow-500 mx-auto mb-4"></div>
-                        <p class="text-gray-600">
-                            Sosialisasi tata nilai AKHLAK dan peraturan perusahaan terbaru dilakukan setiap 3 bulan sekali pada hari Rabu.
-                        </p>
                     </div>
                 </div>
+            </section>
 
-                <!-- Second Row -->
-                <div class="grid md:grid-cols-2 gap-8 mt-12 max-w-4xl mx-auto">
-                    <!-- GATHUK -->
-                    <div class="text-center bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                        <div class="w-20 h-20 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
-                            <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20 6L9 17l-5-5"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-blue-800 mb-4">GATHUK (Gathering dan Tukaran Pikiran)</h3>
-                        <div class="w-12 h-1 bg-yellow-500 mx-auto mb-4"></div>
-                        <p class="text-gray-600">
-                            Kegiatan gathering dan sharing session antar divisi untuk mempererat hubungan kerja sama tim.
-                        </p>
-                    </div>
-
-                    <!-- REWANG -->
-                    <div class="text-center bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                        <div class="w-20 h-20 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
-                            <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-blue-800 mb-4">REWANG (Saling Membantu)</h3>
-                        <div class="w-12 h-1 bg-yellow-500 mx-auto mb-4"></div>
-                        <p class="text-gray-600">
-                            Budaya saling membantu dan gotong royong dalam menyelesaikan tugas dan tantangan bersama.
-                        </p>
-                    </div>
+            <!-- Gallery -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-6">Galeri</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a v-for="(img, i) in galleryImages" :key="i" :href="img" target="_blank" class="block overflow-hidden rounded border hover:shadow">
+                        <img :src="img" class="w-full h-48 object-cover" />
+                    </a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Informasi Proyek Section -->
-        <section class="py-16 bg-white">
-            <div class="max-w-6xl mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-blue-800 mb-4">Informasi Ruas Tol Jogja - Bawen</h2>
-                    <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
+            <!-- Instagram follow -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Ikuti Kami di Instagram</h2>
+                <div class="flex items-center gap-4">
+                    <a href="https://www.instagram.com/jasamargajogjabawen.official/" target="_blank" class="px-4 py-2 bg-pink-500 text-white rounded">@jasamargajogjabawen.official</a>
+                    <p class="text-sm text-gray-600">Update foto &amp; kegiatan perusahaan di Instagram.</p>
                 </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="text-center">
-                        <div class="text-5xl font-bold text-blue-800 mb-2">75,12</div>
-                        <div class="text-xl text-gray-600">Kilometer</div>
-                        <div class="text-sm text-gray-500 mt-2">Panjang Total Ruas</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-5xl font-bold text-green-600 mb-2">80,76%</div>
-                        <div class="text-xl text-gray-600">Seksi 1</div>
-                        <div class="text-sm text-gray-500 mt-2">Progress Konstruksi</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-5xl font-bold text-green-600 mb-2">76,74%</div>
-                        <div class="text-xl text-gray-600">Seksi 6</div>
-                        <div class="text-sm text-gray-500 mt-2">Progress Konstruksi</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-5xl font-bold text-orange-500 mb-2">6</div>
-                        <div class="text-xl text-gray-600">Seksi</div>
-                        <div class="text-sm text-gray-500 mt-2">Pembagian Konstruksi</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Berita & Informasi -->
-        <section class="py-16 bg-gray-50">
-            <div class="max-w-6xl mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-blue-800 mb-4">Berita & Informasi Terkini</h2>
-                    <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="h-48 bg-gray-300 flex items-center justify-center">
-                            <span class="text-gray-500">Gambar Berita</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-gray-800">Kerja Sama dengan Fakultas Psikologi UGM</h3>
-                            <p class="text-gray-600 mb-4">PT Jasamarga Jogja Bawen menjalin kerja sama dengan Fakultas Psikologi UGM untuk perkuat layanan kesehatan mental karyawan.</p>
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Baca Selengkapnya →</a>
-                        </div>
-                    </article>
-
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="h-48 bg-gray-300 flex items-center justify-center">
-                            <span class="text-gray-500">Gambar Berita</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-gray-800">Progress Pembangunan Tol Jogja-Bawen</h3>
-                            <p class="text-gray-600 mb-4">Update terbaru mengenai kemajuan pembangunan jalan tol Yogyakarta-Bawen yang terus berlangsung sesuai jadwal.</p>
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Baca Selengkapnya →</a>
-                        </div>
-                    </article>
-
-                    <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="h-48 bg-gray-300 flex items-center justify-center">
-                            <span class="text-gray-500">Gambar Berita</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-gray-800">HUT ke-80 Republik Indonesia</h3>
-                            <p class="text-gray-600 mb-4">Peringatan HUT ke-80 Republik Indonesia dengan berbagai kegiatan dan upacara kemerdekaan di lingkungan Jasamarga.</p>
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Baca Selengkapnya →</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+            </section>
+        </main>
     </LandingLayout>
 </template>
 
 <style scoped>
-/* Additional custom styles if needed */
+/* Minimal styling to match the general look of the source site. Uses existing Tailwind utility classes if present. */
+.container { max-width: 1100px; color: #000; }
+main, h1, h2, h3, h4, p, a, label, div { color: #000 !important; }
 </style>

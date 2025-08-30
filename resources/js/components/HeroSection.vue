@@ -59,7 +59,7 @@ const next = () => {
 
 <template>
     <!-- responsive heights: compact on mobile, tall on md+ -->
-    <section class="relative w-full overflow-hidden h-56 sm:h-64 md:h-[95vh]">
+    <section class="relative w-full overflow-hidden h-56 sm:h-64 md:h-[92vh]">
         <!-- slides -->
         <div class="absolute inset-0">
             <div v-for="(img, i) in props.images" :key="i" class="absolute inset-0 transition-opacity duration-700" :class="{ 'opacity-0 pointer-events-none': i !== current, 'opacity-100': i === current }" :style="{ backgroundImage: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center' }">
