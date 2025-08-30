@@ -1,28 +1,12 @@
 <script setup lang="ts">
-
-import { Link } from '@inertiajs/vue3';
 import LandingLayout from '@/layouts/LandingLayout.vue';
 import HeroSection from '@/components/HeroSection.vue';
 </script>
 
 <template>
     <LandingLayout title="Jasamarga Jogja Bawen - Beranda">
-        <!-- Hero Section -->
-        <HeroSection
-            title="PT Jasamarga Jogja Bawen"
-            background-class="bg-gradient-to-r from-blue-600 to-blue-800"
-        >
-            <template #content>
-                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                    Menghubungkan Yogyakarta dan Bawen melalui infrastruktur jalan tol yang berkualitas tinggi
-                </p>
-            </template>
-            <template #actions>
-                <button class="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-4 px-8 rounded-lg text-lg transition-colors">
-                    Jelajahi Lebih Lanjut
-                </button>
-            </template>
-        </HeroSection>
+    <!-- Hero Section: image-only slideshow -->
+    <HeroSection :images="['/images/jasamarga-jumbotron.jpg', '/images/jasamarga-jumbotron2.jpg', '/images/jasamarga-jumbotron3.jpg', '/images/jasamarga-jumbotron4.jpg']" :interval="6000" />
 
         <!-- Tata Budaya Section -->
         <section class="py-16 bg-gray-50">
@@ -187,24 +171,6 @@ import HeroSection from '@/components/HeroSection.vue';
                             <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Baca Selengkapnya →</a>
                         </div>
                     </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Call to Action -->
-        <section class="py-16 bg-blue-800 text-white">
-            <div class="max-w-6xl mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold mb-4">Bergabunglah Dengan Kami</h2>
-                <p class="text-xl mb-8 max-w-2xl mx-auto">
-                    Mari bersama-sama membangun infrastruktur yang berkualitas untuk kemajuan Indonesia
-                </p>
-                <div class="space-x-4">
-                    <Link href="/kontak" class="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-3 px-8 rounded-lg transition-colors">
-                        Hubungi Kami
-                    </Link>
-                    <Link href="/tentang-kami" class="border-2 border-white hover:bg-white hover:text-blue-800 text-white font-bold py-3 px-8 rounded-lg transition-colors">
-                        Pelajari Lebih Lanjut
-                    </Link>
                 </div>
             </div>
         </section>

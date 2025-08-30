@@ -49,34 +49,33 @@ const isActiveRoute = (href: string) => {
                     <!-- Logo -->
                     <Link href="/" class="flex items-center">
                         <img src="/images/jasamarga-logo.png" alt="Jasamarga Logo" class="h-10 w-auto mr-3" />
-                        <div class="text-xl font-bold text-blue-700">JASAMARGA</div>
-                        <div class="text-sm text-gray-600 ml-1">JOGJA BAWEN</div>
                     </Link>
 
-                    <!-- Desktop Navigation -->
-                    <nav class="hidden md:flex space-x-8">
-                        <Link
-                            v-for="item in navigationItems"
-                            :key="item.href"
-                            :href="item.href"
-                            :class="[
-                                'px-3 py-2 font-medium transition-colors',
-                                isActiveRoute(item.href)
-                                    ? 'text-blue-700 border-b-2 border-blue-700'
-                                    : 'text-gray-700 hover:text-blue-700'
-                            ]"
-                        >
-                            {{ item.label }}
-                        </Link>
-                    </nav>
+                    <!-- Desktop Navigation + Search (grouped right) -->
+                    <div class="hidden md:flex items-center space-x-3">
+                        <nav class="flex space-x-4">
+                            <Link
+                                v-for="item in navigationItems"
+                                :key="item.href"
+                                :href="item.href"
+                                :class="[
+                                    'px-2 py-2 font-medium transition-colors',
+                                    isActiveRoute(item.href)
+                                        ? 'text-blue-700 border-b-2 border-blue-700'
+                                        : 'text-gray-700 hover:text-blue-700'
+                                ]"
+                            >
+                                {{ item.label }}
+                            </Link>
+                        </nav>
 
-                    <!-- Search Icon -->
-                    <div class="hidden md:flex items-center">
-                        <button class="text-gray-600 hover:text-blue-700">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </button>
+                        <div class="flex items-center">
+                            <button class="text-gray-600 hover:text-blue-700">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Mobile menu button -->
@@ -97,7 +96,7 @@ const isActiveRoute = (href: string) => {
                             :key="item.href"
                             :href="item.href"
                             :class="[
-                                'block px-3 py-2 font-medium transition-colors',
+                                'block px-2 py-2 font-medium transition-colors',
                                 isActiveRoute(item.href)
                                     ? 'text-blue-700 bg-blue-50'
                                     : 'text-gray-700 hover:text-blue-700'
@@ -110,17 +109,6 @@ const isActiveRoute = (href: string) => {
                 </div>
             </div>
         </header>
-
-        <!-- Breadcrumb (Optional) -->
-        <div v-if="showBreadcrumb" class="bg-gray-100 py-4">
-            <div class="max-w-6xl mx-auto px-4">
-                <nav class="text-sm">
-                    <Link href="/" class="text-blue-600 hover:text-blue-800">Beranda</Link>
-                    <span class="mx-2 text-gray-500">></span>
-                    <span class="text-gray-700">{{ breadcrumbTitle }}</span>
-                </nav>
-            </div>
-        </div>
 
         <!-- Main Content Slot -->
         <main>
@@ -135,7 +123,6 @@ const isActiveRoute = (href: string) => {
                     <div>
                         <div class="flex items-center mb-4">
                             <img src="/images/jasamarga-logo.png" alt="Jasamarga Logo" class="h-8 w-auto mr-2" />
-                            <div class="text-lg font-bold">JASAMARGA</div>
                         </div>
                         <p class="text-gray-400 mb-4">
                             PT Jasamarga Jogja Bawen (JJB) merupakan Badan Usaha Jalan Tol (BUJT) yang dibentuk oleh konsorsium BUMN pemenang lelang pembangunan Jalan Tol Yogyakarta-Bawen.
