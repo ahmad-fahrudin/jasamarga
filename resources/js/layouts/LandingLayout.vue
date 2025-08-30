@@ -42,8 +42,8 @@ const isActiveRoute = (href: string) => {
     <Head :title="title" />
 
     <div class="min-h-screen bg-white">
-        <!-- Header -->
-        <header class="bg-white shadow-sm border-b">
+    <!-- Header (fixed on scroll) -->
+    <header class="bg-white shadow-sm border-b fixed top-0 left-0 right-0 z-50">
             <div class="max-w-6xl mx-auto px-4">
                 <div class="flex items-center justify-between h-16">
                     <!-- Logo -->
@@ -110,8 +110,9 @@ const isActiveRoute = (href: string) => {
             </div>
         </header>
 
-        <!-- Main Content Slot -->
-        <main>
+    <!-- Main Content Slot -->
+    <!-- add top padding equal to header height (h-16) so content isn't hidden behind fixed header -->
+    <main class="pt-16">
             <slot />
         </main>
 
