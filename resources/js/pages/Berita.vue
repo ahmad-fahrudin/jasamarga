@@ -53,39 +53,6 @@ const beritaList = [
     <LandingLayout title="Berita & Informasi - Jasamarga Jogja Bawen" :showBreadcrumb="true" breadcrumbTitle="Berita & Informasi">
         <!-- Main Content -->
         <main>
-            <!-- Hero Section -->
-            <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-                <div class="max-w-6xl mx-auto px-4 text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Berita & Informasi</h1>
-                    <p class="text-xl max-w-2xl mx-auto">
-                        Ikuti perkembangan terkini seputar proyek dan kegiatan PT Jasamarga Jogja Bawen
-                    </p>
-                </div>
-            </section>
-
-            <!-- Filter Section -->
-            <section class="py-8 bg-gray-50">
-                <div class="max-w-6xl mx-auto px-4">
-                    <div class="flex flex-wrap gap-4 justify-center">
-                        <button class="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors">
-                            Semua
-                        </button>
-                        <button class="bg-white text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-gray-100 border transition-colors">
-                            Progress Proyek
-                        </button>
-                        <button class="bg-white text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-gray-100 border transition-colors">
-                            Kerja Sama
-                        </button>
-                        <button class="bg-white text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-gray-100 border transition-colors">
-                            Event
-                        </button>
-                        <button class="bg-white text-gray-700 px-6 py-2 rounded-full font-medium hover:bg-gray-100 border transition-colors">
-                            CSR
-                        </button>
-                    </div>
-                </div>
-            </section>
-
             <!-- Berita Utama -->
             <section class="py-12">
                 <div class="max-w-6xl mx-auto px-4">
@@ -195,33 +162,6 @@ const beritaList = [
                                 </a>
                             </div>
                         </article>
-                    </div>
-
-                    <!-- Load More Button -->
-                    <div class="text-center mt-12">
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
-                            Muat Lebih Banyak
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Newsletter Subscription -->
-            <section class="py-16 bg-blue-800 text-white">
-                <div class="max-w-6xl mx-auto px-4 text-center">
-                    <h2 class="text-3xl font-bold mb-4">Berlangganan Newsletter</h2>
-                    <p class="text-xl mb-8 max-w-2xl mx-auto">
-                        Dapatkan berita dan informasi terbaru langsung di email Anda
-                    </p>
-                    <div class="max-w-md mx-auto flex gap-4">
-                        <input
-                            type="email"
-                            placeholder="Masukkan email Anda"
-                            class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                        />
-                        <button class="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded-lg transition-colors">
-                            Berlangganan
-                        </button>
                     </div>
                 </div>
             </section>

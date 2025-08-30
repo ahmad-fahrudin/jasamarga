@@ -53,7 +53,14 @@ const navigationItems: NavItem[] = [
             { href: '/kebijakan-mutuk3', label: 'Kebijakan Mutu & K3' }
         ]
     },
-    { href: '/berita-informasi', label: 'Berita & Informasi' },
+    {
+        label: 'Berita & Informasi',
+        children: [
+            { href: '/berita', label: 'Berita' },
+            { href: '/tender', label: 'Tender' },
+            { href: '/release', label: 'Release' }
+        ]
+    },
     { href: '/kontak', label: 'Kontak' }
 ];
 

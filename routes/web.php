@@ -11,9 +11,17 @@ Route::get('/tentang-kami', function () {
     return Inertia::render('TentangKami');
 })->name('tentang-kami');
 
-Route::get('/berita-informasi', function () {
-    return Inertia::render('BeritaInformasi');
-})->name('berita-informasi');
+Route::get('/berita', function () {
+    return Inertia::render('Berita');
+})->name('berita');
+
+Route::get('/tender', function () {
+    return Inertia::render('Tender');
+})->name('tender');
+
+Route::get('/release', function () {
+    return Inertia::render('Release');
+})->name('release');
 
 Route::get('/info-rest-area', function () {
     return Inertia::render('InfoRestArea');
