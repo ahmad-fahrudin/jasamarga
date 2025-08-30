@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link, usePage } from '@inertiajs/vue3';
-import { ref, computed } from 'vue';
+import { ref, computed, reactive } from 'vue';
 
 interface Props {
     title?: string;
@@ -20,21 +20,102 @@ const mobileMenuOpen = ref(false);
 const page = usePage();
 const currentRoute = computed(() => page.url);
 
-// Navigation items
-const navigationItems = [
+// Navigation items with nested children for multi-level menu
+interface NavItem {
+    href?: string;
+    label: string;
+    children?: NavItem[];
+}
+
+const navigationItems: NavItem[] = [
     { href: '/', label: 'Beranda' },
+    {
+        label: 'Info Layanan',
+        children: [
+            { href: '/info-rest-area', label: 'Info Rest Area' },
+            {
+                label: 'Informasi Layanan Jalan Tol',
+                children: [
+                    { href: '/layanan-transaksi', label: 'Layanan Transaksi' },
+                    { href: '/layanan-lalu-lintas', label: 'Layanan Lalu Lintas' }
+                ]
+            }
+        ]
+    },
     { href: '/tentang-kami', label: 'Tentang Kami' },
     { href: '/berita-informasi', label: 'Berita & Informasi' },
-    { href: '/digital-arsip', label: 'Digital Arsip' },
     { href: '/kontak', label: 'Kontak' }
 ];
 
 // Check if menu item is active
-const isActiveRoute = (href: string) => {
-    if (href === '/') {
-        return currentRoute.value === '/';
-    }
+const isActiveRoute = (href?: string) => {
+    if (!href) return false;
+    if (href === '/') return currentRoute.value === '/';
     return currentRoute.value.startsWith(href);
+};
+
+// Dropdown state for desktop hover
+const openDropdown = ref<string | null>(null); // top-level label
+const openSubDropdown = ref<string | null>(null); // second-level label
+
+// Hover close timers to avoid accidental closing when moving between elements
+let closeTimerTop: ReturnType<typeof setTimeout> | null = null;
+let closeTimerSub: ReturnType<typeof setTimeout> | null = null;
+const clearCloseTimerTop = () => {
+    if (closeTimerTop) {
+        clearTimeout(closeTimerTop);
+        closeTimerTop = null;
+    }
+};
+const clearCloseTimerSub = () => {
+    if (closeTimerSub) {
+        clearTimeout(closeTimerSub);
+        closeTimerSub = null;
+    }
+};
+const scheduleCloseTop = (ms = 220) => {
+    clearCloseTimerTop();
+    closeTimerTop = setTimeout(() => {
+        openDropdown.value = null;
+        openSubDropdown.value = null;
+    }, ms);
+};
+const scheduleCloseSub = (ms = 220) => {
+    clearCloseTimerSub();
+    closeTimerSub = setTimeout(() => {
+        openSubDropdown.value = null;
+    }, ms);
+};
+
+// Named handlers for mouse enter/leave to reduce gaps when moving between menu and dropdown
+const handleTopEnter = (item: NavItem) => {
+    clearCloseTimerTop();
+    clearCloseTimerSub();
+    if (item.children) openDropdown.value = item.label;
+};
+const handleTopLeave = () => {
+    scheduleCloseTop();
+};
+const handleDropdownEnter = () => {
+    clearCloseTimerTop();
+    clearCloseTimerSub();
+};
+const handleDropdownLeave = () => {
+    scheduleCloseTop();
+};
+const handleSubEnter = (child: NavItem) => {
+    clearCloseTimerSub();
+    if (child.children) openSubDropdown.value = child.label;
+};
+const handleSubLeave = () => {
+    // schedule sub close only — keep top open briefly to allow moving back
+    scheduleCloseSub();
+};
+
+// Mobile toggles (click to open)
+const mobileSubOpen = reactive<Record<string, boolean>>({});
+const toggleMobileSub = (label: string) => {
+    mobileSubOpen[label] = !mobileSubOpen[label];
 };
 </script>
 
@@ -45,66 +126,166 @@ const isActiveRoute = (href: string) => {
     <!-- Header (fixed on scroll) -->
     <header class="bg-white shadow-sm border-b fixed top-0 left-0 right-0 z-50">
             <div class="max-w-6xl mx-auto px-4">
-                <div class="flex items-center justify-between h-16">
-                    <!-- Logo -->
-                    <Link href="/" class="flex items-center">
-                        <img src="/images/jasamarga-logo.png" alt="Jasamarga Logo" class="h-10 w-auto mr-3" />
-                    </Link>
+                <div class="flex items-center h-16">
+                    <!-- Logo (left) -->
+                    <div class="flex-shrink-0">
+                        <Link href="/" class="flex items-center">
+                            <img src="/images/jasamarga-logo.png" alt="Jasamarga Logo" class="h-10 w-auto mr-3" />
+                        </Link>
+                    </div>
 
-                    <!-- Desktop Navigation + Search (grouped right) -->
-                    <div class="hidden md:flex items-center space-x-3">
-                        <nav class="flex space-x-4">
-                            <Link
+                    <!-- Centered Navigation (desktop) -->
+                    <div class="hidden md:flex flex-1 justify-center">
+                        <nav class="flex space-x-4 relative items-center">
+                            <div
                                 v-for="item in navigationItems"
-                                :key="item.href"
-                                :href="item.href"
-                                :class="[
-                                    'px-2 py-2 font-medium transition-colors',
-                                    isActiveRoute(item.href)
-                                        ? 'text-blue-700 border-b-2 border-blue-700'
-                                        : 'text-gray-700 hover:text-blue-700'
-                                ]"
+                                :key="item.label"
+                                class="relative"
+                                @mouseenter="() => handleTopEnter(item)"
+                                @mouseleave="() => handleTopLeave()"
                             >
-                                {{ item.label }}
-                            </Link>
-                        </nav>
+                                <template v-if="item.children">
+                                    <button
+                                        class="px-2 py-2 font-medium transition-colors text-gray-700 hover:text-blue-700 flex items-center"
+                                        :class="isActiveRoute(item.href) ? 'text-blue-700 border-b-2 border-blue-700' : ''"
+                                    >
+                                        {{ item.label }}
+                                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
 
-                        <div class="flex items-center">
+                                    <!-- Top-level dropdown -->
+                                    <div
+                                        v-show="openDropdown === item.label"
+                                        class="absolute left-0 mt-2 w-56 bg-white border shadow-lg z-50"
+                                        @mouseenter="handleDropdownEnter"
+                                        @mouseleave="handleDropdownLeave"
+                                    >
+                                        <ul>
+                                            <li
+                                                v-for="child in item.children"
+                                                :key="child.label"
+                                                class="px-4 py-2 hover:bg-gray-50 flex justify-between items-center"
+                                                @mouseenter="() => handleSubEnter(child)"
+                                                @mouseleave="() => handleSubLeave()"
+                                            >
+                                                <template v-if="child.children">
+                                                    <div class="flex items-center justify-between w-full">
+                                                        <span class="text-gray-700">{{ child.label }}</span>
+                                                        <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </div>
+
+                                                    <!-- Second-level dropdown -->
+                                                    <div
+                                                        v-show="openSubDropdown === child.label"
+                                                        class="absolute left-full top-0 ml-1 w-56 bg-white border shadow-lg z-50"
+                                                        @mouseenter="handleDropdownEnter"
+                                                        @mouseleave="handleDropdownLeave"
+                                                    >
+                                                        <ul>
+                                                            <li v-for="sub in child.children" :key="sub.label" class="px-4 py-2 hover:bg-gray-50">
+                                                                <Link :href="sub.href" class="text-gray-700">{{ sub.label }}</Link>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </template>
+                                                <template v-else>
+                                                    <Link :href="child.href" class="text-gray-700">{{ child.label }}</Link>
+                                                </template>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </template>
+
+                                <template v-else>
+                                    <Link
+                                        :href="item.href"
+                                        class="px-2 py-2 font-medium transition-colors"
+                                        :class="isActiveRoute(item.href) ? 'text-blue-700 border-b-2 border-blue-700' : 'text-gray-700 hover:text-blue-700'"
+                                    >
+                                        {{ item.label }}
+                                    </Link>
+                                </template>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <!-- Right actions (desktop) + Mobile menu button -->
+                    <div class="flex items-center space-x-3">
+                        <div class="hidden md:flex items-center">
                             <button class="text-gray-600 hover:text-blue-700">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
                             </button>
                         </div>
-                    </div>
 
-                    <!-- Mobile menu button -->
-                    <div class="md:hidden">
-                        <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-600 hover:text-blue-700">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
-                        </button>
+                        <!-- Mobile menu button -->
+                        <div class="md:hidden">
+                            <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-600 hover:text-blue-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Mobile Navigation -->
                 <div v-show="mobileMenuOpen" class="md:hidden border-t">
-                    <div class="py-2 space-y-1">
-                        <Link
-                            v-for="item in navigationItems"
-                            :key="item.href"
-                            :href="item.href"
-                            :class="[
-                                'block px-2 py-2 font-medium transition-colors',
-                                isActiveRoute(item.href)
-                                    ? 'text-blue-700 bg-blue-50'
-                                    : 'text-gray-700 hover:text-blue-700'
-                            ]"
-                            @click="mobileMenuOpen = false"
-                        >
-                            {{ item.label }}
-                        </Link>
+                    <div class="py-2">
+                        <ul class="space-y-1">
+                            <li v-for="item in navigationItems" :key="item.label" class="">
+                                <div v-if="item.children" class="flex items-center justify-between px-4 py-2">
+                                    <span class="font-medium text-gray-700">{{ item.label }}</span>
+                                    <button @click="toggleMobileSub(item.label)" class="text-gray-600">
+                                        <svg v-if="!mobileSubOpen[item.label]" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                        </svg>
+                                        <svg v-else class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div v-if="item.children && mobileSubOpen[item.label]" class="pl-4">
+                                    <ul class="space-y-1">
+                                        <li v-for="child in item.children" :key="child.label">
+                                            <div v-if="child.children" class="flex items-center justify-between px-4 py-2">
+                                                <Link :href="child.href || '#'" class="text-gray-700">{{ child.label }}</Link>
+                                                <button @click="toggleMobileSub(child.label)" class="text-gray-600">
+                                                    <svg v-if="!mobileSubOpen[child.label]" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                                    </svg>
+                                                    <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+
+                                            <div v-if="child.children && mobileSubOpen[child.label]" class="pl-4">
+                                                <ul>
+                                                    <li v-for="sub in child.children" :key="sub.label" class="px-4 py-2">
+                                                        <Link :href="sub.href" @click="mobileMenuOpen = false" class="text-gray-700">{{ sub.label }}</Link>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div v-else-if="!child.children" class="px-4 py-2">
+                                                <Link :href="child.href" @click="mobileMenuOpen = false" class="text-gray-700">{{ child.label }}</Link>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div v-else-if="!item.children" class="px-4 py-2">
+                                    <Link :href="item.href" @click="mobileMenuOpen = false" class="text-gray-700">{{ item.label }}</Link>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

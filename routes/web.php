@@ -15,10 +15,6 @@ Route::get('/berita-informasi', function () {
     return Inertia::render('BeritaInformasi');
 })->name('berita-informasi');
 
-Route::get('/digital-arsip', function () {
-    return Inertia::render('DigitalArsip');
-})->name('digital-arsip');
-
 Route::get('/kontak', function () {
     return Inertia::render('Kontak');
 })->name('kontak');
