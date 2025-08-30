@@ -15,6 +15,18 @@ Route::get('/berita-informasi', function () {
     return Inertia::render('BeritaInformasi');
 })->name('berita-informasi');
 
+Route::get('/info-rest-area', function () {
+    return Inertia::render('InfoRestArea');
+})->name('info-rest-area');
+
+Route::get('/layanan-transaksi', function () {
+    return Inertia::render('LayananTransaksi');
+})->name('layanan-transaksi');
+
+Route::get('/layanan-lalu-lintas', function () {
+    return Inertia::render('LayananLaluLintas');
+})->name('layanan-lalu-lintas');
+
 Route::get('/kontak', function () {
     return Inertia::render('Kontak');
 })->name('kontak');
