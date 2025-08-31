@@ -89,7 +89,7 @@ const galleryImages = ref<string[]>([
             <section class="mb-12">
                 <h2 class="text-2xl font-semibold mb-4">Ikuti Kami di Instagram</h2>
                 <div class="flex items-center gap-4">
-                    <a href="https://www.instagram.com/jasamargajogjabawen.official/" target="_blank" class="px-4 py-2 bg-pink-500 text-white rounded">@jasamargajogjabawen.official</a>
+                    <a href="https://www.instagram.com/jasamargajogjabawen.official/" target="_blank" class="px-4 py-2 bg-pink-500 text-white rounded">@jasamargasemarangbatang.official</a>
                     <p class="text-sm text-gray-600">Update foto &amp; kegiatan perusahaan di Instagram.</p>
                 </div>
             </section>

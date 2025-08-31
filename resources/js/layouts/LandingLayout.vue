@@ -118,6 +118,13 @@ const isActiveRoute = (href?: string) => {
     return currentRoute.value.startsWith(href);
 };
 
+// Recursively check whether a menu item or any of its descendants matches the current route
+const isMenuActive = (item: NavItem): boolean => {
+    if (item.href && isActiveRoute(item.href)) return true;
+    if (item.children) return item.children.some(child => isMenuActive(child));
+    return false;
+};
+
 // Dropdown state for desktop hover
 const openDropdown = ref<string | null>(null); // top-level label
 const openSubDropdown = ref<string | null>(null); // second-level label
@@ -216,7 +223,7 @@ const toggleMobileSub = (label: string) => {
                                 <template v-if="item.children">
                                     <button
                                         class="px-2 py-2 font-medium transition-colors text-gray-700 hover:text-blue-700 flex items-center"
-                                        :class="isActiveRoute(item.href) ? 'text-blue-700 border-b-2 border-blue-700' : ''"
+                                        :class="isMenuActive(item) ? 'text-blue-700 border-b-2 border-blue-700' : ''"
                                     >
                                         {{ item.label }}
                                         <!-- replaced SVG with lucide -->
@@ -275,7 +282,7 @@ const toggleMobileSub = (label: string) => {
                                     <Link
                                         :href="item.href"
                                         class="px-2 py-2 font-medium transition-colors"
-                                        :class="isActiveRoute(item.href) ? 'text-blue-700 border-b-2 border-blue-700' : 'text-gray-700 hover:text-blue-700'"
+                                        :class="isMenuActive(item) ? 'text-blue-700 border-b-2 border-blue-700' : 'text-gray-700 hover:text-blue-700'"
                                     >
                                         {{ item.label }}
                                     </Link>
